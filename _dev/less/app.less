@@ -1,0 +1,71 @@
+// All blocks independent, prefix — is ​​short for parent, two spaces — modifier.
+// More — nazz.me/indi-blocks (rus)
+@import "basic/mixins.less";
+@import "basic/paths.less";
+@import "basic/reset.less";
+@import "basic/fonts.less";
+
+
+.header {
+  width:960px; margin:0 auto;
+  a {
+    float:right; height:30px; text-decoration:none; color:#e6e6e6;
+    padding:10px 5px;
+  }
+}
+  .h_wrapper {
+    position:fixed; top:0; left:0; right:0; height:40px;
+    background:url("@{img}header.png") no-repeat #0A0C0E;
+  }
+
+
+.auth { margin:100px 0; }
+  .m__a_popup {
+    margin:0;
+    .a_screen { background:none; }
+  }
+  .a_screen {
+    width:180px; background:#ededed; margin:0 auto; padding:30px 50px;
+    a {
+      float:left; clear:left; text-decoration:none; border-bottom:1px dashed #333;
+      margin:0 0 5px;
+    }
+    input {
+      width:158px; border:1px solid #333;
+      padding:5px 10px; margin:6px auto 10px;
+    }
+    button { padding:3px 10px; margin:0 0 25px; }
+  }
+  .a_dashed_link { width:200%; }
+    .me__a_screen_sign-up {
+      button { width:100%; }
+      a { margin-left:5px; }
+    }
+
+
+.popup {
+  .shadow(4px 4px 30px #130507);
+  .transition(top, 800ms);
+  position:fixed; z-index:2; top:60px; left:50%; width:400px; background:#fff;
+}
+  .p_close {
+    position:absolute; top:0; right:0; width:16px; height:12px; padding:15px 11px 0 0;
+    span {
+      display:block; width:18px; height:5px; background:#333;
+      &:first-child { .transform(rotate(45deg)); }
+      &:last-child {
+        .transform(rotate(135deg));
+        margin:-5px 0 0;
+      }
+    }
+  }
+  .p_body {
+    .transition(opacity, 800ms);
+    position:fixed; left:0; top:0; width:100%; height:100%;
+    background:#000; opacity:0.7;
+  }
+
+
+@import "basic/js.less";
+@import "basic/hacks.less";
+

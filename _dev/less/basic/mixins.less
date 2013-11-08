@@ -1,0 +1,45 @@
+.round ( @rad:5px ) {
+    -webkit-border-radius: @rad;
+    -moz-border-radius: @rad;
+  border-radius: @rad;
+}
+
+.shadow ( @sdw:1px 1px 2px #fff ) {
+    -moz-box-shadow: @sdw;
+    -webkit-box-shadow: @sdw;
+  box-shadow: @sdw;
+}
+
+.txt_overflow {
+    -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.gradient ( @col_start:#735858, @col_end:#523737, @col_def:#634848 ) {
+    background: @col_def;
+  background: -webkit-gradient(linear, left top, left bottom, from(@col_start), to(@col_end));
+  background: -moz-linear-gradient(top, @col_start, @col_end);
+  background: -o-linear-gradient(top, @col_start, @col_end);
+  background: -ms-linear-gradient(top, @col_start, @col_end);
+}
+
+.transition (@rule, @time) {
+    -webkit-transition: @rule @time ease;
+    -moz-transition: @rule @time ease;
+    -o-transition: @rule @time ease;
+  transition: @rule @time ease;
+}
+
+.transform(@rule) {
+    -ms-transform:@rule;
+    -webkit-transform:@rule;
+  transform:@rule;
+}
+
+.user_select (@value) {
+    -webkit-user-select: @value;
+    -moz-user-select: @value;
+    -ms-user-select: @value;
+    -o-user-select: @value;
+  user-select: @value;
+}
