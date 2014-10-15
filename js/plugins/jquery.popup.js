@@ -1,46 +1,49 @@
-﻿// Nikita Lebedev's blog, nazz.me/simple-jquery-popup
+﻿// Nikita Lebedev's blog, jumanji.name/simple-jquery-popup
 (function($) {
   $.fn.simplePopup = function(event) {
-
-    // The overall function of the show (public)
-    $.fn.simplePopup.prototype.show = function(popup, body) {
-      simplePopup.centering(popup);
-      body.removeClass("js__fadeout");
-      popup.removeClass("js__slide_top");
-    };
-
     var simplePopup = {
-
       settings: {
         hashtag: "#/",
-        url: "auth/sign-in",
+        url: "popup",
         event: event || "click"
       },
 
       // Events
       initialize: function(self) {
-
         var popup = $(".js__popup");
         var body = $(".js__p_body");
         var close = $(".js__p_close");
+        var routePopup = simplePopup.settings.hashtag + simplePopup.settings.url;
 
-        var string = self[0].className;
-        var name = string.replace("js__p_", "");
+        var cssClasses = self[0].className;
+
+        if (cssClasses.indexOf(" ") >= 0) {
+          cssClasses = cssClasses.split(" ");
+
+          for (key in cssClasses) {
+            if (cssClasses[key].indexOf("js__p_") === 0) {
+              cssClasses = cssClasses[key]
+            }
+          };
+        }
+
+        var name = cssClasses.replace("js__p_", "");
 
         // We redefine the variables if there is an additional popap
-        if ( !(name === "start") ) {
-          var new_url = "another_popup";
-
+        if (name !== "start") {
           name = name.replace("_start", "_popup");
           popup = $(".js__" + name);
-          routePopup = simplePopup.settings.hashtag + new_url;
+          routePopup = simplePopup.settings.hashtag + name;
         };
 
         // Call when have event
         self.on(simplePopup.settings.event, function() {
-          $.fn.simplePopup.prototype.show(popup, body);
-          location.hash = simplePopup.settings.hashtag + simplePopup.settings.url;
+          simplePopup.show(popup, body, routePopup);
           return false;
+        });
+
+        $(window).on("load", function() {
+          simplePopup.hash(popup, body, routePopup);
         });
 
         // Close
@@ -68,11 +71,26 @@
         return self.css("margin-left", marginLeft);
       },
 
+      // The overall function of the show
+      show: function(popup, body, routePopup) {
+        simplePopup.centering(popup);
+        body.removeClass("js__fadeout");
+        popup.removeClass("js__slide_top");
+        location.hash = routePopup;
+      },
+
       // The overall function of the hide
       hide: function(popup, body) {
         popup.addClass("js__slide_top");
         body.addClass("js__fadeout");
         location.hash = simplePopup.settings.hashtag;
+      },
+
+      // Watch hash in URL
+      hash: function(popup, body, routePopup) {
+        if (location.hash === routePopup) {
+          simplePopup.show(popup, body, routePopup);
+        }
       }
 
     };
@@ -82,7 +100,6 @@
       var self = $(this);
       simplePopup.initialize(self);
     });
-
   };
 })(jQuery);
 
