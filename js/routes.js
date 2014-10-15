@@ -34,13 +34,19 @@ var Routes = function() {
       location.hash = this.SIGN_IN;
     }
     else if (location.hash === this.SIGN_IN) {
-      this.change_screen($(".js__a_sign-in"));
+      this.change_screen(
+        $(".js__a_sign-in")
+      );
     }
     else if (location.hash === SIGN_UP) {
-      this.change_screen($(".js__a_sign-up"));
+      this.change_screen(
+        $(".js__a_sign-up")
+      );
     }
     else if (location.hash === RESTORE) {
-      this.change_screen($(".js__a_restore"));
+      this.change_screen(
+        $(".js__a_restore")
+      );
     }
   };
 
